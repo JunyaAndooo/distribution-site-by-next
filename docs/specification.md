@@ -86,7 +86,6 @@
 ### 画面設計（UI 設計）
 
 ​![ログインページ](https://user-images.githubusercontent.com/43309177/86507671-0b378500-be15-11ea-9833-a8b79bb15e98.png)
-![検索ページ](https://app.slack.com/client/T014MJSQ5U7/C0165D2EH1Q)
 ![ダウンロードページ](https://user-images.githubusercontent.com/43309177/86507672-0ecb0c00-be15-11ea-863c-3948917febbd.png)​
 
 ### データ設計
