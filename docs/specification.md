@@ -85,8 +85,9 @@
 
 ### 画面設計（UI 設計）
 
-​
+​![ログインページ](https://user-images.githubusercontent.com/43309177/86507671-0b378500-be15-11ea-9833-a8b79bb15e98.png)
 ![検索ページ](https://user-images.githubusercontent.com/67815204/86507549-fb6b7100-be13-11ea-96db-0fb1c45856bb.jpg)
 ​![結果ページ](https://user-images.githubusercontent.com/67815204/86507614-98c6a500-be14-11ea-9554-62276f007efd.jpg)
+![ダウンロードページ](https://user-images.githubusercontent.com/43309177/86507672-0ecb0c00-be15-11ea-863c-3948917febbd.png)​
 
 ### データ設計
