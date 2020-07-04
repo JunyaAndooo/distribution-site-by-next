@@ -6,10 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint:win": "eslint \"*/**/*.{js,ts,tsx}\" --quiet --fix",
+    "lint:mac": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "dependencies": {
     "@emotion/core": "^10.0.28",
+    "firebase": "^7.15.5",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"

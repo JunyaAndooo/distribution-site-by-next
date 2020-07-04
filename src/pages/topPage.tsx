@@ -19,7 +19,7 @@ const styles = {
 /*
  * Content
  */
-const TopPage = (prps: any) => {
+const TopPage = () => {
   return (
     <>
       <Head>
