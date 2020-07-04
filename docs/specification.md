@@ -51,8 +51,9 @@
 | ---------------- | ---------------- | ------------------------------ |
 | 性能要件 | レスポンスタイム | 1 秒以内 |
 | | ストレージ性能 | 500GB |
-| セキュリティ要件 | データの秘匿 | アカウントのパスワードは暗号化 |
-| 運用要件 | ログ出力 | ユーザの操作を記録すること |
+| セキュリティ要件 | データの秘匿 | アカウントのパスワードは暗号化（Firebase を使うので勝手にやってくれる） |
+| 運用要件 | ログ出力 | ユーザの操作を記録すること（グーグルアナリティクス） |
+| | エラー発生時 | Slack にエラー通知 |
 ​
 
 ### システムやライブラリ
@@ -62,20 +63,19 @@
 - 使用する公開サービス
   - netlify
 - データベース
-  - firebase
+  - Firebase
 - CDN
-  - firebase
+  - Firebase Hosting
 - 認証システム
-  - firebase
+  - Firebase
 - 開発言語
-  - javaScript
+  - TypeScript
+  - Node.js
 - 使用するライブラリ
   - React.js
-  - TypeScript
   - next.js
-  - evolution
-  - React Context API
-  - StoryBook
+  - emotion
+  - Storybook
   - PWA
     ​
 
