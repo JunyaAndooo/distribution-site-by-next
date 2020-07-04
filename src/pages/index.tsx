@@ -1,7 +1,9 @@
-import TopPage from './topPage';
+import TopPage from "./topPage";
 
-export default () => (
-  <>
-    <TopPage />
-  </>
-);
+export default function Index() {
+  return (
+    <>
+      <TopPage />
+    </>
+  );
+}
