@@ -1,18 +1,26 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { auth } from "../firebase";
+import Router from "next/router";
 
 /**
  * Content
  */
-const Signup = () => {
+const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
-  const signup = async (email: string, password: string) => {
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      user && Router.push("/");
+    });
+  }, []);
+
+  const login = async (email: string, password: string) => {
     try {
-      await auth.createUserWithEmailAndPassword(email, password);
+      await auth.signInWithEmailAndPassword(email, password);
+      Router.push("/");
     } catch (error) {
       alert(error.message);
     }
@@ -20,7 +28,7 @@ const Signup = () => {
 
   return (
     <>
-      <div>
+      <div css={styles.emailBox}>
         <input
           type="text"
           css={styles.email}
@@ -30,6 +38,8 @@ const Signup = () => {
             setEmail(event.target.value);
           }}
         />
+      </div>
+      <div>
         <input
           type="password"
           css={styles.password}
@@ -39,15 +49,16 @@ const Signup = () => {
             setPassword(event.target.value);
           }}
         />
-        <input
-          type="button"
-          css={styles.loginButton}
-          value="登録する"
-          onClick={() => {
-            signup(email, password);
-          }}
-        />
       </div>
+
+      <input
+        type="button"
+        css={styles.loginButton}
+        value="ログインする"
+        onClick={() => {
+          login(email, password);
+        }}
+      />
     </>
   );
 };
@@ -56,18 +67,23 @@ const Signup = () => {
  * CSS
  */
 const styles = {
-  email: css`
+  emailBox: css`
     position: absolute;
     width: 930px;
     height: 141px;
     left: 376px;
     top: 368px;
-
     background: #ffffff;
     border: 5px solid #000000;
     box-sizing: border-box;
     border-radius: 15px;
-
+  `,
+  email: css`
+    position: absolute;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
@@ -76,8 +92,8 @@ const styles = {
     display: flex;
     align-items: center;
     text-align: center;
-
     color: #787878;
+    border: none;
   `,
   password: css`
     position: absolute;
@@ -124,4 +140,4 @@ const styles = {
   `,
 };
 
-export default Signup;
+export default Login;
