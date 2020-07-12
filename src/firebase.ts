@@ -14,7 +14,9 @@ const firebaseConfig = {
   measurementId: "G-88DVN71R41",
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+if (firebase.apps.length === 0) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export default firebase;
 
