@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import Router from "next/router";
 
 /*
@@ -11,8 +11,12 @@ const SearchWindow = () => {
     setKeyword(event.target.value);
   };
 
-  const handleSubmit = () => {
-    Router.push("/search/" + keyword);
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    Router.push({
+      pathname: "/search",
+      query: { keyword: keyword },
+    });
   };
 
   return (
