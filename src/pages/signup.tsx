@@ -23,17 +23,16 @@ const Signup: PageFC = () => {
 
   if (authContext.authenticated) {
     Router.push("/");
-    return <></>;
   }
 
   const { register, handleSubmit, errors } = useForm<FormData>({
     mode: "onBlur",
   });
 
-  const signup = async (login: FormData) => {
+  const signup = async (data: FormData) => {
     try {
-      await auth.createUserWithEmailAndPassword(login.email, login.password);
-      authContext.setUser && authContext.setUser({ email: login.email });
+      await auth.createUserWithEmailAndPassword(data.email, data.password);
+      authContext.setUser && authContext.setUser({ email: data.email });
       Router.push("/");
     } catch (error) {
       alert(error.message);
@@ -41,12 +40,7 @@ const Signup: PageFC = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(() =>
-        signup({ email: email, password: password })
-      )}
-      css={styles.form}
-    >
+    <form onSubmit={handleSubmit(signup)} css={styles.form}>
       <div>
         <input
           type="text"
