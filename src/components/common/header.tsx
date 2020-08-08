@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { Global, css, jsx } from "@emotion/core";
 import { useContext } from "react";
-import { AuthContext } from "components/authProvider";
+import { AuthContext } from "components/common/authProvider";
 import Link from "next/link";
 
 /*

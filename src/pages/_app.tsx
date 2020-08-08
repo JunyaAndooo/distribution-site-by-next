@@ -2,8 +2,7 @@ import { AppProps } from "next/app";
 import Head from "next/head";
 import React from "react";
 
-import { AuthProvider } from "components/authProvider";
-
+import { AuthProvider } from "components/common/authProvider";
 import Header from "components/common/header";
 import "assets/css/reset.css";
 

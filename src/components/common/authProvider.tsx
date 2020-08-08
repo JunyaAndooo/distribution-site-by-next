@@ -1,14 +1,8 @@
 import React, { useEffect, useState, ReactNode } from "react";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 
-import { Login } from "types/login";
-
-type ContextProps = {
-  user: Login | null;
-  authenticated: boolean;
-  setUser: (login: Login | null) => void;
-  loadingAuthState: boolean;
-};
+import { User } from "types/user";
+import { ContextProps } from "types/contextProps";
 
 interface Props {
   children: ReactNode;
@@ -17,7 +11,7 @@ interface Props {
 export const AuthContext = React.createContext<Partial<ContextProps>>({});
 
 export const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<Login | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loadingAuthState, setLoadingAuthState] = useState(true);
   useEffect(() => {
     auth.onAuthStateChanged((user: firebase.User | null) => {
