@@ -1,18 +1,30 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { auth } from "../firebase";
+import Router from "next/router";
+
+import { AuthContext } from "components/common/authProvider";
+import { PageFC } from "next";
 
 /**
  * Content
  */
-const Signup = () => {
+const Signup: PageFC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const authContext = useContext(AuthContext);
+
+  if (authContext.authenticated) {
+    Router.push("/");
+    return <></>;
+  }
 
   const signup = async (email: string, password: string) => {
     try {
       await auth.createUserWithEmailAndPassword(email, password);
+      authContext.setUser && authContext.setUser({ email: email });
+      Router.push("/");
     } catch (error) {
       alert(error.message);
     }
@@ -50,6 +62,12 @@ const Signup = () => {
       </div>
     </>
   );
+};
+
+Signup.getInitialProps = async () => {
+  return {
+    title: "アカウント作成",
+  };
 };
 
 /**
