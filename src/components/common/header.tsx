@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { Global, css, jsx } from "@emotion/core";
+import React from "react";
 
 /*
  * CSS
@@ -38,12 +39,17 @@ interface Props {
   title: string;
 }
 
+const ResourceContext = React.createContext("");
+
 const Header = (props: Props) => {
   return (
     <>
       <Global styles={globalCss} />
       <div css={styles.titleBase}>
         <h1 css={styles.title}>{props.title}</h1>
+        <ResourceContext.Consumer>
+          {(resourceEmail) => <div>{resourceEmail}</div>}
+        </ResourceContext.Consumer>
       </div>
     </>
   );
