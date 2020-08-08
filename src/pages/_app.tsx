@@ -1,8 +1,10 @@
 import { AppProps } from "next/app";
 import Head from "next/head";
+import React from "react";
 
+import { AuthProvider } from "components/common/authProvider";
 import Header from "components/common/header";
-import "../assets/css/reset.css";
+import "assets/css/reset.css";
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -10,8 +12,10 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title key="title">{pageProps.title}</title>
       </Head>
-      <Header title={pageProps.title} />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Header title={pageProps.title} />
+        <Component {...pageProps} />
+      </AuthProvider>
     </>
   );
 };
