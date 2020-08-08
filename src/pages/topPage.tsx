@@ -1,4 +1,3 @@
-import Head from "next/head";
 import SearchWindow from "../components/searchWindow";
 
 /*
@@ -7,9 +6,6 @@ import SearchWindow from "../components/searchWindow";
 const TopPage = () => {
   return (
     <>
-      <Head>
-        <title key="title">検索ページ</title>
-      </Head>
       <SearchWindow />
     </>
   );

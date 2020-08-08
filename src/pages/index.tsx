@@ -1,9 +1,18 @@
-import TopPage from "./topPage";
+import { PageFC } from "next";
+import TopPage from "pages/topPage";
 
-export default function Index() {
+const Index: PageFC = () => {
   return (
     <>
       <TopPage />
     </>
   );
-}
+};
+
+Index.getInitialProps = async () => {
+  return {
+    title: "検索ページ",
+  };
+};
+
+export default Index;

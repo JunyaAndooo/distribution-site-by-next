@@ -13,18 +13,12 @@ const globalCss = css`
 
 const styles = {
   titleBase: css`
-    position: absolute;
-    height: 168px;
-    left: 0%;
-    right: 0%;
-    top: 0px;
-  `,
-  title: css`
-    position: absolute;
     width: 100%;
     height: 168px;
-    left: 0px;
-    top: 0px;
+  `,
+  title: css`
+    width: 100%;
+    height: 100%;
     font-family: Roboto;
     font-style: normal;
     font-weight: normal;
