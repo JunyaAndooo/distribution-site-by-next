@@ -1,25 +1,30 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { auth } from "../firebase";
 import Router from "next/router";
+
+import { AuthContext } from "components/common/authProvider";
+import { User } from "types/user";
+import { PageFC } from "next";
 
 /**
  * Content
  */
-const Login = () => {
+const Login: PageFC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+  const authContext = useContext(AuthContext);
 
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      user && Router.push("/");
-    });
-  }, []);
+  if (authContext.authenticated) {
+    Router.push("/");
+    return <></>;
+  }
 
   const login = async (email: string, password: string) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      authContext.setUser && authContext.setUser({ email: email });
       Router.push("/");
     } catch (error) {
       alert(error.message);
@@ -61,6 +66,12 @@ const Login = () => {
       />
     </>
   );
+};
+
+Login.getInitialProps = async () => {
+  return {
+    title: "ログイン",
+  };
 };
 
 /**
