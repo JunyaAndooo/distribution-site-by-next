@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, ReactNode } from "react";
 import { auth } from "../firebase";
 
 import { Login } from "types/login";
@@ -6,13 +6,17 @@ import { Login } from "types/login";
 type ContextProps = {
   user: Login | null;
   authenticated: boolean;
-  setUser: any;
+  setUser: (login: Login | null) => void;
   loadingAuthState: boolean;
 };
 
+interface Props {
+  children: ReactNode;
+}
+
 export const AuthContext = React.createContext<Partial<ContextProps>>({});
 
-export const AuthProvider = ({ children }: any) => {
+export const AuthProvider = ({ children }: Props) => {
   const [user, setUser] = useState<Login | null>(null);
   const [loadingAuthState, setLoadingAuthState] = useState(true);
   useEffect(() => {
