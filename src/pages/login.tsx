@@ -1,11 +1,10 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { auth } from "../firebase";
 import Router from "next/router";
 
 import { AuthContext } from "components/common/authProvider";
-import { User } from "types/user";
 import { PageFC } from "next";
 
 /**
