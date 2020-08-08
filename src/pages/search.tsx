@@ -1,24 +1,25 @@
-import { NextPage, PageProps } from "next";
+import { PageFC } from "next";
 import Images from "../components/images";
-import { withRouter } from "next/router";
-import { WithRouterProps } from "next/dist/client/with-router";
+
 /*
  * Content
  */
-const Search: NextPage<WithRouterProps & PageProps> = (
-  prop: WithRouterProps
-) => {
-  return (
-    <>
-      <Images searchWord={prop.router.query.keyword} />
-    </>
-  );
+type Props = {
+  title: string;
+  keyword: string;
 };
 
-Search.getInitialProps = async () => {
+const Search: PageFC<Props> = (props: Props) => {
+  const { keyword } = props;
+  return <Images searchWord={keyword} />;
+};
+
+Search.getInitialProps = async ({ query: { keyword } }) => {
+  keyword = typeof keyword === "string" ? keyword : "";
   return {
     title: "結果ページ",
+    keyword,
   };
 };
 
-export default withRouter(Search);
+export default Search;

@@ -6,13 +6,13 @@ import firebase from "../firebase";
  * Content
  */
 interface Props {
-  searchWord: string | string[] | undefined;
+  searchWord: string;
 }
 
 const Images = (props: Props) => {
   const [data, setData] = useState<Tile[]>([]);
 
-  const getData = async (searchWord: string | string[] | undefined) => {
+  const getData = async (searchWord: string) => {
     const db = firebase.firestore();
     const tileDataRef = db.collection("tileData");
     const searchedData = tileDataRef.where(
