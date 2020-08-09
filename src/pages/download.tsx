@@ -35,9 +35,13 @@ const Donwload: PageFC<Props> = (props: Props) => {
   }
 
   return (
-    <div key={tile.title}>
+    <div>
       <img src={tile.image} alt={tile.title} />
       <h3>{tile.title}</h3>
+
+      <a href={tile.downloadUrl} download>
+        <button>ダウンロードする</button>
+      </a>
     </div>
   );
 };
