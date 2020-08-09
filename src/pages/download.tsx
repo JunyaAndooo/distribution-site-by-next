@@ -1,7 +1,9 @@
-import { PageFC } from "next";
-import { Tile } from "types/tile";
-import { useState, useEffect } from "react";
+import { AuthContext } from "components/common/authProvider";
 import firebase from "firebase";
+import { PageFC } from "next";
+import Router from "next/router";
+import { useContext, useEffect, useState } from "react";
+import { Tile } from "types/tile";
 
 type Props = {
   title: string;
@@ -10,6 +12,11 @@ type Props = {
 
 const Donwload: PageFC<Props> = (props: Props) => {
   const [tile, setTile] = useState<Tile | null>(null);
+  const authContext = useContext(AuthContext);
+
+  if (!authContext.authenticated) {
+    Router.push("/");
+  }
 
   const getData = async (searchWord: string) => {
     const db = firebase.firestore();
