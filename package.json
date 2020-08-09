@@ -14,7 +14,8 @@
     "firebase": "^7.15.5",
     "next": "9.4.4",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-hook-form": "^6.3.1"
   },
   "devDependencies": {
     "@types/node": "^14.0.14",

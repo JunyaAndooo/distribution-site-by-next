@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from "@emotion/core";
-import { useState, useContext } from "react";
+import { useState, useContext, FormEvent } from "react";
 import { auth } from "../firebase";
 import Router from "next/router";
 
@@ -17,7 +17,6 @@ const Login: PageFC = () => {
 
   if (authContext.authenticated) {
     Router.push("/");
-    return <></>;
   }
 
   const login = async (email: string, password: string) => {
@@ -30,8 +29,13 @@ const Login: PageFC = () => {
     }
   };
 
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    login(email, password);
+  };
+
   return (
-    <>
+    <form onSubmit={handleSubmit}>
       <div css={styles.emailBox}>
         <input
           type="text"
@@ -55,15 +59,8 @@ const Login: PageFC = () => {
         />
       </div>
 
-      <input
-        type="button"
-        css={styles.loginButton}
-        value="ログインする"
-        onClick={() => {
-          login(email, password);
-        }}
-      />
-    </>
+      <input type="submit" css={styles.loginButton} value="ログインする" />
+    </form>
   );
 };
 
