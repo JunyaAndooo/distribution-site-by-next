@@ -14,10 +14,6 @@ const Donwload: PageFC<Props> = (props: Props) => {
   const [tile, setTile] = useState<Tile | null>(null);
   const authContext = useContext(AuthContext);
 
-  if (!authContext.authenticated) {
-    Router.push("/");
-  }
-
   const getData = async (searchWord: string) => {
     const db = firebase.firestore();
     const tileDataRef = db.collection("tileData");
@@ -34,8 +30,12 @@ const Donwload: PageFC<Props> = (props: Props) => {
   };
 
   useEffect(() => {
-    getData(props.keyword);
-  }, [props.keyword]);
+    if (authContext.user) {
+      getData(props.keyword);
+    } else {
+      Router.push("/");
+    }
+  }, [props.keyword, authContext.user]);
 
   if (!tile) {
     return <></>;
