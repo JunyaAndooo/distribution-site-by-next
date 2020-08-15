@@ -25,8 +25,9 @@ type Props = {
 
 const Download: PageFC<Props> = (props: Props) => {
   const authContext = useContext(AuthContext);
+  const router = useRouter();
+
   if (!authContext.authenticated) {
-    const router = useRouter();
     router.push("/");
     return <></>;
   }
