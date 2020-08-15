@@ -27,7 +27,7 @@ const Download: PageFC<Props> = (props: Props) => {
   const authContext = useContext(AuthContext);
   const router = useRouter();
 
-  if (!authContext.authenticated) {
+  if (typeof window !== "undefined" && !authContext.authenticated) {
     router.push("/");
     return <></>;
   }
