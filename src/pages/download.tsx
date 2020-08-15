@@ -1,7 +1,7 @@
 import { AuthContext } from "components/common/authProvider";
 import firebase from "firebase";
 import { PageFC } from "next";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import { useContext } from "react";
 import { Tile } from "types/tile";
 
@@ -24,6 +24,13 @@ type Props = {
 };
 
 const Download: PageFC<Props> = (props: Props) => {
+  const authContext = useContext(AuthContext);
+  if (!authContext.authenticated) {
+    const router = useRouter();
+    router.push("/");
+    return <></>;
+  }
+
   return (
     <>
       {props.tiles.map((tile) => (
@@ -40,12 +47,8 @@ const Download: PageFC<Props> = (props: Props) => {
 };
 
 Download.getInitialProps = async ({ query: { keyword } }) => {
-  const authContext = useContext(AuthContext);
-  if (!authContext.authenticated) {
-    Router.push("/");
-  }
-
-  const tiles = await getData(typeof keyword === "string" ? keyword : "");
+  const tiles =
+    (await getData(typeof keyword === "string" ? keyword : "")) || [];
 
   return {
     title: "ダウンロード",
