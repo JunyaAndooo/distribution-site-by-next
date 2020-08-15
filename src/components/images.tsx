@@ -1,6 +1,7 @@
 import { Tile } from "../types/tile";
 import { useState, useEffect } from "react";
 import firebase from "../firebase";
+import Router from "next/router";
 
 /*
  * Content
@@ -38,7 +39,11 @@ const Images = (props: Props) => {
     <>
       {data.map((tile) => (
         <div key={tile.title}>
-          <img src={tile.image} alt={tile.title} />
+          <img
+            src={tile.image}
+            alt={tile.title}
+            onClick={() => Router.push(`/download?keyword=${props.searchWord}`)}
+          />
           <h3>{tile.title}</h3>
         </div>
       ))}
